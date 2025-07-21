@@ -12,6 +12,67 @@
   <script src="https://kit.fontawesome.com/a2a80f73b8.js" crossorigin="anonymous"></script>
 
   <style>
+  .project-gallery {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.project-gallery img {
+  width: 30%;
+  max-width: 200px;
+  cursor: pointer;
+  border: 3px solid #A4C3B2;
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.project-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 600px;
+  max-height: 80vh;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.modal-content img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.8rem;
+  font-size: 1.8rem;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+}
+
     :root {
       --bg: #FAF4F4;
       --accent1: #A4C3B2;
