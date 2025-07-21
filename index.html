@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tracy-Lee Oberem | Portfolio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a2a80f73b8.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --bg: #FAF4F4;
+      --accent1: #A4C3B2;
+      --accent2: #D5AAFF;
+      --text: #4B4453;
+      --btn: #B2C2FF;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #D5AAFF 0%, #A4C3B2 100%);
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+      font-family: 'Playfair Display', serif;
+      overflow: hidden;
+    }
+
+    /* subtle code symbols overlay */
+    /* ----------------------Fix ratios----------------------*/
+    header::before {
+      content: "; () <> {}  {} <> ();";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 4rem;
+      color: rgba(255, 255, 255, 0.5);
+      transform: translate(-50%, -50%) rotate(0deg);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: 2rem;
+      font-family: monospace, monospace;
+      z-index: 0;
+    }
+
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 { font-size: 2.5rem; }
+    header p { font-size: 1.2rem; margin-top: 0.5rem; }
+    nav { margin-top: 1rem; }
+    nav a {
+      color: white;
+      margin: 0 0.8rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 2.5rem 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
+    }
+
+    .about img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1rem;
+    }
+
+    .skills span {
+      background: var(--accent2);
+      color: #fff;
+      padding: 0.4rem 0.9rem;
+      margin: 0.3rem;
+      border-radius: 500px;
+      display: inline-block;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .skills i {
+      margin-right: 0.5rem;
+    }
+
+    a.button {
+      display: inline-block;
+      background: var(--btn);
+      color: #fff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    .contact a {
+      color: var(--accent1);
+      display: block;
+      margin-top: 0.5rem;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .contact a i {
+      margin-right: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Tracy-Lee Oberem</h1>
+  <p>Microbiology Graduate & BSc IT Student | Aspiring Developer</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="card about" style="text-align:center;">
+    <p>After graduating my <strong> Bsc in Microbiology & Biochemistry</strong> in 2023.<br>I shifted my focus towards a more technological approach in <strong>BSc in IT</strong> at North-West University.<br>I enjoy new challenges and wish to one day merge my degrees by focusing on software development in the <strong>biological field</strong>.</p> I am eager to learn, grow and enjoy new experiences professionally.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="card">
+    <p>1. Microbial Explorer:</p>
+    <p> A Wiki page designed to navigate through diffeent microbes, giving a brief overview of the microbe in question and also allowing user to access the Wikepedia page for the Microbe</p>
+	<p>(Insert image)</p>
+  <p></p>
+  <p> 2. Dreamflix Cinema POS system</p>
+  <p> A POS system designed for a cinema in order to automate their current manual system. The maintainence of movies, employees, timeslots and room seats where also a focus. Reports could be generated based on the amount of tickets sold per movie, from what employee and the income generated. </p>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="card skills">
+    <span><i class="fab fa-java"></i> Java</span>
+    <span><i class="fab fa-python"></i> Python</span>
+    <span><i class="fas fa-code"></i> C#</span>
+    <span><i class="fas fa-code"></i> C++</span>
+    <span><i class="fas fa-database"></i> SQL</span>
+    <span><i class="fas fa-database"></i> JavaScript</span>
+    <span><i class="fas fa-database"></i> HTML</span>
+    <span><i class="fas fa-database"></i> Mauve</span>
+    <span><i class="fas fa-database"></i> FinchTV</span>
+    <span><i class="fas fa-database"></i> BLASTn</span>
+    <span><i class="fas fa-database"></i> BioEdit</span>
+    <span><i class="fas fa-database"></i> MEGA</span>
+  </div>
+</section>
+
+<section id="cv">
+  <h2>CV</h2>
+  <div class="card">
+    <p>You can view or download my CV below:</p>
+	<p> (How TF do I put in a CV if I dont have one yet XD)</p>
+    <a href="Tracy-Lee Oberem CV.pdf" class="button"><i class="fas fa-file-pdf"></i> Download CV</a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card contact">
+    <p>Let’s connect!</p>
+	<a href="tel:+27812653448"><i class="fas fa-phone"></i> +27 81 265 3448</a>
+    <a href="mailto:tracylee846@gmail.com"><i class="fas fa-envelope"></i> tracylee846@gmail.com</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <a href="https://github.com/Tracy-LeeOberem/Tracy-LeeOberem.github.io" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+  </div>
+</section>
+
+<footer>
+  🌸
+</footer>
+
+</body>
+</html>
