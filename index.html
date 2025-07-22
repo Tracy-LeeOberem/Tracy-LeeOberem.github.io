@@ -19,6 +19,11 @@
       --text: #4B4453;
       --btn: #B2C2FF;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
@@ -43,7 +48,7 @@
       top: 50%;
       left: 50%;
       font-size: 4rem;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.253);
       transform: translate(-50%, -50%);
       white-space: nowrap;
       user-select: none;
@@ -59,10 +64,28 @@
 
     nav { margin-top: 1rem; }
     nav a {
+      position: relative;
       color: white;
       margin: 0 0.8rem;
       font-weight: bold;
       text-decoration: none;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
     }
 
     section {
@@ -227,16 +250,27 @@
   <h2>Projects</h2>
   <div class="card">
     <p><strong>1. Microbial Explorer</strong><br>
-    Developed an interactive web application called Microbial Explorer using JavaScript, CSS, and HTML, designed to help users easily explore detailed information about various microbes. The app leverages AI techniques to intelligently fetch and display the most relevant Wikipedia pages for selected microbes, providing users with quick access to accurate and comprehensive scientific knowledge..</p>
+    Developed an interactive web application called Microbial Explorer using JavaScript, CSS, and HTML, designed to help users easily explore detailed information about various microbes. The app leverages AI techniques to intelligently fetch and display the most relevant Wikipedia pages for selected microbes, providing users with quick access to accurate and comprehensive scientific knowledge.</p>
     <div class="project-gallery">
       <img src="microbial-explorer.png" alt="Microbial Explorer1" onclick="openModal(this.src)">
       <img src="microbial-explorer2.png" alt="Microbial Explorer2" onclick="openModal(this.src)">
       <img src="microbial-explorer3.png" alt="Microbial Explorer3" onclick="openModal(this.src)">
+      <br>
+      <!-- YouTube Video Embed -->
+      <div style="margin-top: 1rem;">
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+        <iframe width="560" height="315" 
+                src="https://www.youtube.com/embed/qqsWRBTuE1c" 
+                title="Connect Four Demo" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+      </div>
     </div>
     <br>
 
     <p><strong>2. Dreamflix Cinema POS System</strong><br>
-    A point-of-sale system for cinemas that automates movie, employee, timeslot, and seat management. It includes reporting tools for ticket sales, income, and employee activity.</p>
+    Developed a POS(point-of-sale) system for a cinema to help employees with day-to-day operations such as movie schedualing, maintaining employees, maintaining movie timeslots as well as maintaining seat bookings. It includes built-in tools for tracking sales, income and employee performance. This project was created as a group assignment and developed using C#.</p>
     <div class="project-gallery">
       <img src="CinemaLogin.png" alt="Cinema1" onclick="openModal(this.src)">
       <img src="CinemaDashBoard.png" alt="Cinema2" onclick="openModal(this.src)">
@@ -259,7 +293,7 @@
     <br>
 
     <p><strong>3. Connect Four Java Minigame</strong><br>
-    Developed a fully functional Connect Four game in Java featuring both two-player and single-player modes against an AI opponent. The application provides an intuitive interface for users to drop discs into a 7x6 grid, with built-in game logic to validate moves, detect wins, and handle draws. This was the first time I attempted JavaScript as well as implementing a AI component into a program </p>
+    Developed a interactive Connect Four game using Java and JavaScript. Supporting both two-player and single-player modes, with a AI component included for single-player mode. The game features a simple interface that allows players to drop disks into a 7x6 grid, including logic to validate moves, check for wins and handel draws. It was my first time working with Javascript and basic AI logic. </p>
     <div class="project-gallery">
       <img src="ConnectFour1.png" alt="Cinema1" onclick="openModal(this.src)">
       <img src="ConnectFour2.png" alt="Cinema2" onclick="openModal(this.src)">
