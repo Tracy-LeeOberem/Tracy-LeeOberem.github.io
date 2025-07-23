@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tracy-Lee Oberem | Portfolio</title>
 
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat&display=swap" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/a2a80f73b8.js" crossorigin="anonymous"></script>
 
   <style>
@@ -22,12 +21,32 @@
       scroll-behavior: smooth;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Canvas for background animation */
+    #fallingPixels {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background: #FAF4F4;
     }
 
     header {
@@ -38,6 +57,7 @@
       padding: 4rem 1rem;
       font-family: 'Playfair Display', serif;
       overflow: hidden;
+      z-index: 1;
     }
 
     header::before {
@@ -56,11 +76,25 @@
       z-index: 0;
     }
 
-    header > * { position: relative; z-index: 1; }
-    header h1 { font-size: 2.5rem; }
-    header p { font-size: 1.2rem; margin-top: 0.5rem; }
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
 
-    nav { margin-top: 1rem; }
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    nav {
+      margin-top: 1rem;
+      z-index: 1;
+    }
+
     nav a {
       position: relative;
       color: white;
@@ -90,14 +124,19 @@
       padding: 2.5rem 1rem;
       max-width: 900px;
       margin: auto;
+      position: relative;
+      z-index: 1;
+      background: transparent; /* keep transparent to show bg animation */
     }
 
     .card {
       background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
       margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
     }
 
     .about img {
@@ -124,7 +163,9 @@
       font-size: 0.9rem;
     }
 
-    .skills i { margin-right: 0.5rem; }
+    .skills i {
+      margin-right: 0.5rem;
+    }
 
     a.button {
       display: inline-block;
@@ -145,13 +186,17 @@
       font-size: 1rem;
     }
 
-    .contact a i { margin-right: 0.5rem; }
+    .contact a i {
+      margin-right: 0.5rem;
+    }
 
     footer {
       text-align: center;
       padding: 1.5rem;
       font-size: 0.9rem;
       color: #777;
+      position: relative;
+      z-index: 1;
     }
 
     /* Project Images */
@@ -185,7 +230,7 @@
       top: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0, 0, 0, 0.7);
       justify-content: center;
       align-items: center;
     }
@@ -198,7 +243,7 @@
       max-width: 1000px;
       width: 95%;
       max-height: 90vh;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -244,208 +289,353 @@
 </head>
 
 <body>
+  <!-- Background animation canvas -->
+  <canvas id="fallingPixels"></canvas>
 
-<!-- Banner -->
-<header>
-  <h1>Tracy-Lee Oberem</h1>
-  <p>Bsc Microbiology and Biochemistry Graduate</p> Current BSc IT Student</p> | Aspiring Developer |</p>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#cv">CV</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section id="about">
-  <div style="display: flex; align-items: center;">
-    <img src="About.png" alt="About Icon" style="height: 30px; margin-right: 12px;">
-    <h2 style="margin: 0;">About Me</h2>
-  </div>
-
-  <div class="card about" style="text-align: center; margin-top: 10px;">
+  <!-- Banner -->
+  <header>
+    <h1>Tracy-Lee Oberem</h1>
     <p>
-      After graduating with my <strong>BSc in Microbiology & Biochemistry</strong> in 2023, I shifted my focus to a more technological path by pursuing a <strong>BSc in IT</strong> at North-West University.<br>
-      I enjoy new challenges and aim to merge both degrees by working in <strong>software development in the biological field</strong>. I am eager to learn, grow, and gain new professional experiences.
+      Bsc Microbiology and Biochemistry Graduate
+      <br />
+      Current BSc IT Student | Aspiring Developer |
     </p>
-  </div>
-</section>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<section id="projects">
-  <div style="display: flex; align-items: center;">
-    <img src="Project.png" alt="Project Icon" style="height: 30px; margin-right: 12px;">
-    <h2 style="margin: 0;">Projects</h2>
-  </div>
-  <div class="card">
+  <section id="about">
+    <div style="display: flex; align-items: center;">
+      <img src="About.png" alt="About Icon" style="height: 30px; margin-right: 12px" />
+      <h2 style="margin: 0">About Me</h2>
+    </div>
 
-    <!-- Microbial Explorer Project -->
-    <p><strong>1. Microbial Explorer</strong><br>
-    Developed an interactive web application called Microbial Explorer using JavaScript, CSS, and HTML, designed to help users easily explore detailed information about various microbes. The app leverages AI techniques to intelligently fetch and display the most relevant Wikipedia pages for selected microbes, providing users with quick access to accurate and comprehensive scientific knowledge.</p>
-    <div class="project-gallery">
-      <img src="microbial-explorer.png" alt="Microbial Explorer1" onclick="openModal(this.src)">
-      <img src="microbial-explorer2.png" alt="Microbial Explorer2" onclick="openModal(this.src)">
-      <img src="microbial-explorer3.png" alt="Microbial Explorer3" onclick="openModal(this.src)">
-      <br>
+    <div class="card about" style="text-align: center; margin-top: 10px;">
+      <p>
+        After graduating with my <strong>BSc in Microbiology &amp; Biochemistry</strong> in 2023, I shifted my focus to a more
+        technological path by pursuing a <strong>BSc in IT</strong> at North-West University.
+        <br />
+        I enjoy new challenges and aim to merge both degrees by working in <strong>software development in the biological
+          field</strong>. I am eager to learn, grow, and gain new professional experiences.
+      </p>
+    </div>
+  </section>
 
-      <!-- Microbial Explorer YouTube Video Embed -->
-      <div style="margin-top: 1rem;">
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-        <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/qqsWRBTuE1c" 
-                title="Connect Four Demo" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
+  <section id="projects">
+    <div style="display: flex; align-items: center;">
+      <img src="Project.png" alt="Project Icon" style="height: 30px; margin-right: 12px" />
+      <h2 style="margin: 0">Projects</h2>
+    </div>
+    <div class="card">
+      <!-- Microbial Explorer Project -->
+      <p>
+        <strong>1. Microbial Explorer</strong><br />
+        Developed an interactive web application called Microbial Explorer using JavaScript, CSS, and HTML, designed to help
+        users easily explore detailed information about various microbes. The app leverages AI techniques to intelligently
+        fetch and display the most relevant Wikipedia pages for selected microbes, providing users with quick access to
+        accurate and comprehensive scientific knowledge.
+      </p>
+      <div class="project-gallery">
+        <img
+          src="microbial-explorer.png"
+          alt="Microbial Explorer1"
+          onclick="openModal(this.src)"
+        />
+        <img
+          src="microbial-explorer2.png"
+          alt="Microbial Explorer2"
+          onclick="openModal(this.src)"
+        />
+        <img
+          src="microbial-explorer3.png"
+          alt="Microbial Explorer3"
+          onclick="openModal(this.src)"
+        />
+        <br />
+
+        <!-- Microbial Explorer YouTube Video Embed -->
+        <div style="margin-top: 1rem;">
+          <div
+            style="
+              position: relative;
+              padding-bottom: 56.25%;
+              height: 0;
+              overflow: hidden;
+              max-width: 100%;
+            "
+          >
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/qqsWRBTuE1c"
+              title="Connect Four Demo"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <br /><br />
+
+        <!-- Cinema Project -->
+        <p>
+          <strong>2. Dreamflix Cinema POS System</strong><br />
+          Developed a POS(point-of-sale) system for a cinema to help employees with day-to-day operations such as movie
+          schedualing, maintaining employees, maintaining movie timeslots as well as maintaining seat bookings. It includes
+          built-in tools for tracking sales, income and employee performance. This project was created as a group assignment
+          and developed using C#.
+        </p>
+        <div class="project-gallery">
+          <img src="CinemaLogin.png" alt="Cinema1" onclick="openModal(this.src)" />
+          <img src="CinemaDashBoard.png" alt="Cinema2" onclick="openModal(this.src)" />
+          <img src="CinemaAddEmployee.png" alt="Cinema3" onclick="openModal(this.src)" />
+          <br />
+          <img src="CinemaMaintainEmployees.png" alt="Cinema4" onclick="openModal(this.src)" />
+          <img src="CinemaDeleteEmployee.png" alt="Cinema5" onclick="openModal(this.src)" />
+          <img src="CinemaViewAllEmpoyees.png" alt="Cinema6" onclick="openModal(this.src)" />
+          <br />
+          <img src="CinemaAddTimeslot.png" alt="Cinema7" onclick="openModal(this.src)" />
+          <img src="CinemaEditTimeslot.png" alt="Cinema8" onclick="openModal(this.src)" />
+          <img src="CinemaDeleteTimeslot.png" alt="Cinema9" onclick="openModal(this.src)" />
+          <br />
+          <img src="CinemaMaintainMovies.png" alt="Cinema10" onclick="openModal(this.src)" />
+          <img src="CinemaMaintainRooms.png" alt="Cinema11" onclick="openModal(this.src)" />
+          <img src="CinemaMaintainSeats.png" alt="Cinema12" onclick="openModal(this.src)" />
+          <br />
+          <img src="CinemaReporting.png" alt="Cinema13" onclick="openModal(this.src)" />
+        </div>
+        <br />
+
+        <p>
+          <strong>3. Connect Four Java Minigame</strong><br />
+          Developed a interactive Connect Four game using Java and JavaScript. Supporting both two-player and single-player
+          modes, with a AI component included for single-player mode. The game features a simple interface that allows
+          players to drop disks into a 7x6 grid, including logic to validate moves, check for wins and handel draws. It was my
+          first time working with Javascript and basic AI logic.
+        </p>
+        <div class="project-gallery">
+          <img src="ConnectFour1.png" alt="Cinema1" onclick="openModal(this.src)" />
+          <img src="ConnectFour2.png" alt="Cinema2" onclick="openModal(this.src)" />
+          <br />
+
+          <!-- Cinema YouTube Video Embed -->
+          <div style="margin-top: 1rem;">
+            <div
+              style="
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+                max-width: 100%;
+              "
+            >
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/dLxgslKgsJ8"
+                title="Connect Four Demo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div style="display: flex; align-items: center;">
+        <img src="Skill.png" alt="Skill Icon" style="height: 30px; margin-right: 12px" />
+        <h2 style="margin: 0">Skills</h2>
+      </div>
+      <div class="card skills">
+        <span><i class="fab fa-java"></i> Java</span>
+        <span><i class="fab fa-python"></i> Python</span>
+        <span><i class="fas fa-code"></i> C#</span>
+        <span><i class="fas fa-code"></i> C++</span>
+        <span><i class="fas fa-database"></i> SQL</span>
+        <span><i class="fab fa-js-square"></i> JavaScript</span>
+        <span><i class="fab fa-html5"></i> HTML</span>
+        <span><i class="fab fa-html5"></i> GODOT</span>
+        <span><i class="fas fa-dna"></i> Mauve</span>
+        <span><i class="fas fa-dna"></i> FinchTV</span>
+        <span><i class="fas fa-dna"></i> BLASTn</span>
+        <span><i class="fas fa-dna"></i> BioEdit</span>
+        <span><i class="fas fa-dna"></i> MEGA</span>
+      </div>
+    </section>
+
+    <!-- CV PDF View and download-->
+    <section id="cv">
+      <div style="display: flex; align-items: center;">
+        <img src="CV.png" alt="CV Icon" style="height: 30px; margin-right: 12px" />
+        <h2 style="margin: 0">CV</h2>
+      </div>
+      <div class="card">
+        <p>You can view or download my CV below:</p>
+        <object data="Tracy-Lee_Oberem_CV.pdf" type="application/pdf" width="100%" height="600px">
+          <p>Your browser does not support PDFs.
+            <a href="Tracy-Lee_Oberem_CV.pdf" download>Download CV</a>
+          </p>
+        </object>
+        <a href="Tracy-Lee_Oberem_CV.pdf" class="button" download>
+          <i class="fas fa-file-pdf"></i> Download CV
+        </a>
+      </div>
+    </section>
+
+    <!-- Contact Me section -->
+    <section id="contact">
+      <div style="display: flex; align-items: center;">
+        <img src="Contact.png" alt="Contact Icon" style="height: 30px; margin-right: 12px" />
+        <h2 style="margin: 0">Contact</h2>
+      </div>
+      <div class="card contact">
+        <p>Let’s connect!</p>
+        <a href="tel:+27812653448">
+          <i class="fas fa-phone"></i>
+          <img src="Phone.png" alt="Phone badge" style="height: 16px; margin-left: 5px; vertical-align: middle" />
+          <span style="margin-left: 5px">+27 81 265 3448</span>
+        </a>
+
+        <a href="mailto:tracylee846@gmail.com">
+          <i class="fas fa-envelope"></i>
+          <img src="Email.png" alt="Email badge" style="height: 16px; margin-left: 5px; vertical-align: middle" />
+          <span style="margin-left: 5px">tracylee846@gmail.com</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/tracy-lee-oberem-654a07237/" target="_blank">
+          <i class="fab fa-linkedin"></i>
+          <img src="LinkedIn.png" alt="LinkedIn badge" style="height: 16px; margin-left: 5px; vertical-align: middle;">
+          <span style="margin-left: 5px;">LinkedIn</span>
+        </a>
+
+        <a href="https://github.com/Tracy-LeeOberem" target="_blank">
+          <i class="fab fa-github"></i>
+          <img src="GitHub.png" alt="GitHub badge" style="height: 16px; margin-left: 5px; vertical-align: middle;">
+          <span style="margin-left: 5px;">GitHub</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2023 Tracy-Lee Oberem. All rights reserved.
+    </footer>
+
+    <!-- Modal for project images -->
+    <div id="modal" class="modal" onclick="closeModal(event)">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal(event)">&times;</span>
+        <img id="modal-img" src="" alt="Project Image" />
       </div>
     </div>
-    <br>
 
-    <!-- Cinema Project -->
-    <p><strong>2. Dreamflix Cinema POS System</strong><br>
-    Developed a POS(point-of-sale) system for a cinema to help employees with day-to-day operations such as movie schedualing, maintaining employees, maintaining movie timeslots as well as maintaining seat bookings. It includes built-in tools for tracking sales, income and employee performance. This project was created as a group assignment and developed using C#.</p>
-    <div class="project-gallery">
-      <img src="CinemaLogin.png" alt="Cinema1" onclick="openModal(this.src)">
-      <img src="CinemaDashBoard.png" alt="Cinema2" onclick="openModal(this.src)">
-      <img src="CinemaAddEmployee.png" alt="Cinema3" onclick="openModal(this.src)">
-      <br>
-      <img src="CinemaMaintainEmployees.png" alt="Cinema4" onclick="openModal(this.src)">
-      <img src="CinemaDeleteEmployee.png" alt="Cinema5" onclick="openModal(this.src)">
-      <img src="CinemaViewAllEmpoyees.png" alt="Cinema6" onclick="openModal(this.src)">
-      <br>
-      <img src="CinemaAddTimeslot.png" alt="Cinema7" onclick="openModal(this.src)">
-      <img src="CinemaEditTimeslot.png" alt="Cinema8" onclick="openModal(this.src)">
-      <img src="CinemaDeleteTimeslot.png" alt="Cinema9" onclick="openModal(this.src)">
-      <br>
-      <img src="CinemaMaintainMovies.png" alt="Cinema10" onclick="openModal(this.src)">
-      <img src="CinemaMaintainRooms.png" alt="Cinema11" onclick="openModal(this.src)">
-      <img src="CinemaMaintainSeats.png" alt="Cinema12" onclick="openModal(this.src)">
-      <br>
-      <img src="CinemaReporting.png" alt="Cinema13" onclick="openModal(this.src)">
-    </div>
-    <br>
+    <script>
+      function openModal(src) {
+        const modal = document.getElementById("modal");
+        const modalImg = document.getElementById("modal-img");
+        modal.style.display = "flex";
+        modalImg.src = src;
+      }
 
-    <p><strong>3. Connect Four Java Minigame</strong><br>
-    Developed a interactive Connect Four game using Java and JavaScript. Supporting both two-player and single-player modes, with a AI component included for single-player mode. The game features a simple interface that allows players to drop disks into a 7x6 grid, including logic to validate moves, check for wins and handel draws. It was my first time working with Javascript and basic AI logic. </p>
-    <div class="project-gallery">
-      <img src="ConnectFour1.png" alt="Cinema1" onclick="openModal(this.src)">
-      <img src="ConnectFour2.png" alt="Cinema2" onclick="openModal(this.src)">
-      <br>
+      function closeModal(e) {
+        if (e.target.id === "modal" || e.target.className === "close-btn") {
+          document.getElementById("modal").style.display = "none";
+        }
+      }
+    </script>
 
-      <!-- Cinema YouTube Video Embed -->
-      <div style="margin-top: 1rem;">
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
-        <iframe width="560" height="315" 
-                src="https://www.youtube.com/embed/dLxgslKgsJ8" 
-                title="Connect Four Demo" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
-      </div>  
-    </div>
-  </div>
-</section>
+    <!-- Background particle animation -->
+    <script>
+      const canvas = document.getElementById('fallingPixels');
+      const ctx = canvas.getContext('2d');
 
-<section id="skills">
-  <div style="display: flex; align-items: center;">
-    <img src="Skill.png" alt="Skill Icon" style="height: 30px; margin-right: 12px;">
-    <h2 style="margin: 0;">Skills</h2>
-  </div>
-  <div class="card skills">
-    <span><i class="fab fa-java"></i> Java</span>
-    <span><i class="fab fa-python"></i> Python</span>
-    <span><i class="fas fa-code"></i> C#</span>
-    <span><i class="fas fa-code"></i> C++</span>
-    <span><i class="fas fa-database"></i> SQL</span>
-    <span><i class="fab fa-js-square"></i> JavaScript</span>
-    <span><i class="fab fa-html5"></i> HTML</span>
-    <span><i class="fab fa-html5"></i> GODOT</span>
-    <span><i class="fas fa-dna"></i> Mauve</span>
-    <span><i class="fas fa-dna"></i> FinchTV</span>
-    <span><i class="fas fa-dna"></i> BLASTn</span>
-    <span><i class="fas fa-dna"></i> BioEdit</span>
-    <span><i class="fas fa-dna"></i> MEGA</span>
-  </div>
-</section>
+      let width, height;
+      let particles = [];
 
-<!-- CV PDF View and download-->
-<section id="cv">
-  <div style="display: flex; align-items: center;">
-    <img src="CV.png" alt="CV Icon" style="height: 30px; margin-right: 12px;">
-    <h2 style="margin: 0;">CV</h2>
-  </div>
-  <div class="card">
-    <p>You can view or download my CV below:</p>
-    <object data="Tracy-Lee_Oberem_CV.pdf" type="application/pdf" width="100%" height="600px">
-      <p>Your browser does not support PDFs. <a href="Tracy-Lee_Oberem_CV.pdf" download>Download CV</a></p>
-    </object>
-    <a href="Tracy-Lee_Oberem_CV.pdf" class="button" download>
-      <i class="fas fa-file-pdf"></i> Download CV
-    </a>
-  </div>
-</section>
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
 
-<!-- Contact Me section -->
-<section id="contact">
-  <div style="display: flex; align-items: center;">
-    <img src="Contact.png" alt="Contact Icon" style="height: 30px; margin-right: 12px;">
-    <h2 style="margin: 0;">CV</h2>
-  </div>
-  <div class="card contact">
-    <p>Let’s connect!</p>
-    <a href="tel:+27812653448">
-      <i class="fas fa-phone"></i>
-      <img src="Phone.png" alt="Phone badge" style="height: 16px; margin-left: 5px; vertical-align: middle;">
-      <span style="margin-left: 5px;">+27 81 265 3448</span>
-    </a>
-
-    <a href="mailto:tracylee846@gmail.com">
-      <i class="fas fa-envelope"></i>
-      <img src="Email.png" alt="Email badge" style="height: 16px; margin-left: 5px; vertical-align: middle;">
-      <span style="margin-left: 5px;">tracylee846@gmail.com</span>
-    </a>
-
-    <a href="https://www.linkedin.com/in/tracy-lee-oberem-654a07237/" target="_blank">
-      <i class="fab fa-linkedin"></i>
-      <img src="LinkedIn.png" alt="LinkedIn badge" style="height: 16px; margin-left: 5px; vertical-align: middle;">
-      <span style="margin-left: 5px;">LinkedIn</span>
-    </a>
-
-    <a href="https://github.com/Tracy-LeeOberem" target="_blank">
-      <i class="fab fa-github"></i>
-      <img src="GitHub.png" alt="GitHub badge" style="height: 16px; margin-left: 5px; vertical-align: middle;">
-      <span style="margin-left: 5px;">GitHub</span>
-    </a>
-
-  </div>
-</section>
-
-<footer>
-  🌸
-</footer>
-
-<div id="imgModal" class="modal" onclick="closeModal()">
-  <div class="modal-content" onclick="event.stopPropagation();">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <img src="" alt="Expanded Project Image">
-  </div>
-</div>
-
-<script>
-  function openModal(src) {
-    const modal = document.getElementById("imgModal");
-    modal.querySelector("img").src = src;
-    modal.style.display = "flex";
+      class Particle {
+  constructor(index, count) {
+    this.index = index;
+    this.count = count;
+    this.reset();
   }
-
-  function closeModal() {
-    document.getElementById("imgModal").style.display = "none";
+  reset() {
+    // Evenly space horizontally across full width on load for immediate left side presence
+    this.x = (this.index / this.count) * width;
+    this.y = Math.random() * height;
+    this.size = 8 + Math.random() * 6;
+    this.speedX = (Math.random() - 0.5) * 0.2;
+    this.speedY = (Math.random() - 0.5) * 0.2;
+    this.alpha = 0.2 + Math.random() * 0.3;
   }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === "Escape") closeModal();
-  });
-</script>
+          // Wrap around edges for smooth looping
+          if (this.x < 0) this.x = width;
+          else if (this.x > width) this.x = 0;
+          if (this.y < 0) this.y = height;
+          else if (this.y > height) this.y = 0;
+        }
+        draw() {
+          const ratio = this.x / width;
+          // Purple RGB(128,0,128), Green RGB(164,195,178)
+          const r = Math.floor(128 + (164 - 128) * ratio);
+          const g = Math.floor(0 + (195 - 0) * ratio);
+          const b = Math.floor(128 + (178 - 128) * ratio);
 
+          // Create glowing gradient
+          let grad = ctx.createRadialGradient(this.x, this.y, this.size * 0.1, this.x, this.y, this.size);
+          grad.addColorStop(0, `rgba(${r},${g},${b},${this.alpha.toFixed(2)})`);
+          grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      const particleCount = 60;
+for (let i = 0; i < particleCount; i++) {
+  particles.push(new Particle(i, particleCount));
+}
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach(p => {
+          p.update();
+          p.draw();
+        });
+
+        // Mask out white blocks (adjust X, Y & heights as per your layout)
+        const cardWidth = 900;
+        const cardX = (width - cardWidth) / 2;
+        ctx.clearRect(cardX, 300, cardWidth, 180);   // About
+        ctx.clearRect(cardX, 550, cardWidth, 600);   // Projects
+        ctx.clearRect(cardX, 1180, cardWidth, 150);  // Skills
+        ctx.clearRect(cardX, 1350, cardWidth, 650);  // CV
+        ctx.clearRect(cardX, 2020, cardWidth, 350);  // Contact
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
 </body>
 </html>
