@@ -271,3 +271,7 @@ footer {
 .card.contact img {
   height: 16px;
 }
+
+.YTVideo {
+max-width: 100%;
+}
