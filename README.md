@@ -33,6 +33,6 @@ Animated Particle Backround: <br>
 ## Features:
 - Responsive design for mobile and desktop
 - Projects showcased by descriptions, Images and Youtube video demos
-- View and downloadable embedded CV
+- Viewable and downloadable embedded CV
 - Contact information
 - Links to GitHub and LinkedIn profiles
