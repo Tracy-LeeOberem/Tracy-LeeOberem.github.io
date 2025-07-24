@@ -9,7 +9,7 @@ Built using HTML, CSS, and JavaScript.
 <br>
 <br>
 **JavaScript code Explination:** <br>
-- Image Viewer: <br>
+Image Viewer: <br>
 - The modal functionality portion of the code enables all the images on the website to be interactive and enlarge when clicked. <br>
 - The modal is hidden when the user clicks outside the image or on the close button (black X) at the top right side of the image. <br>
 <br> 
